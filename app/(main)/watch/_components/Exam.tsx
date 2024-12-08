@@ -98,7 +98,11 @@ const Exam = () => {
       {fields.map((field, index) => (
         <div
           key={field.id}
-          ref={(el) => (questionRefs.current[index] = el)}
+          ref={(el) => {
+            if (el) {
+              questionRefs.current[index] = el;
+            }
+          }}
           className="space-y-4"
         >
           <Question
