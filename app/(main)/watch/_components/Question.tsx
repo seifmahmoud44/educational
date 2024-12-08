@@ -1,19 +1,33 @@
+// "use client";
 import { UseFormRegister } from "react-hook-form";
-type FormData = {
-  [key: string]: string | boolean | number; // Adjust according to your form fields
-};
+
+// type FormData = {
+//   [key: string]: {
+//     id: string;
+//     type: "mcq" | "text";
+//     answer: string;
+//     options?: string[];
+//   };
+// };
+
 type QuestionProps = {
   id: string;
   type: string;
   question: string;
   options?: string[];
-  register: UseFormRegister<FormData>;
-  fieldName: string;
+  register: UseFormRegister<{
+    questions: { type: "mcq" | "text"; id: string; answer: string }[];
+  }>;
+  fieldName:
+    | `questions.${number}.answer`
+    | `questions.${number}.id`
+    | `questions.${number}.type`;
   error?: string;
-  selectedAnswer?: string; // Add selectedAnswer prop
+  selectedAnswer?: string;
 };
 
 const Question: React.FC<QuestionProps> = ({
+  id,
   type,
   question,
   options = [],
@@ -22,8 +36,12 @@ const Question: React.FC<QuestionProps> = ({
   error,
   selectedAnswer,
 }) => {
+  // Ensure fieldName is defined before passing it to the register function
+  const field = fieldName || `questions.${id}.answer`; // Default to a valid field name if not provided
+  console.log(field);
+
   return (
-    <div className="p-6 bg-white rounded-md  w-full space-y-4 main-box-shadow">
+    <div className="p-6 bg-white rounded-md w-full space-y-4 main-box-shadow">
       {/* Question Header */}
       <div>
         <p className="text-xs">Question</p>
@@ -36,11 +54,11 @@ const Question: React.FC<QuestionProps> = ({
           {options.map((option, index) => (
             <label
               key={index}
-              className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer bg-[#F5F5F5]    ${
+              className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer bg-[#F5F5F5] ${
                 selectedAnswer === option
                   ? "border border-blue-500"
                   : error && "border-red-500"
-              }  `}
+              }`}
             >
               <input
                 type="radio"
@@ -64,15 +82,7 @@ const Question: React.FC<QuestionProps> = ({
       )}
 
       {/* Error Message */}
-      {
-        <p
-          className={`text-red-500 text-xs   ${
-            error ? "visible" : "invisible"
-          }`}
-        >
-          {error}
-        </p>
-      }
+      {error && <p className="text-red-500 text-xs">{error}</p>}
     </div>
   );
 };
