@@ -4,7 +4,7 @@ type FormData = {
 };
 type QuestionProps = {
   id: string;
-  type: "mcq" | "text";
+  type: string;
   question: string;
   options?: string[];
   register: UseFormRegister<FormData>;

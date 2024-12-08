@@ -11,7 +11,7 @@ const schema = z.object({
     z.object({
       id: z.string(),
       type: z.enum(["mcq", "text"]),
-      answer: z.string().nonempty("Answer is required"),
+      answer: z.string().min(1, "Answer is required"),
     })
   ),
 });
@@ -19,7 +19,12 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const Exam = () => {
-  const questions = [
+  const questions: {
+    id: string;
+    type: "mcq" | "text";
+    question: string;
+    options?: string[];
+  }[] = [
     {
       id: "q1",
       type: "mcq",
@@ -30,6 +35,7 @@ const Exam = () => {
       id: "q2",
       type: "text",
       question: "Explain why you chose that programming language.",
+      options: [],
     },
     {
       id: "q3",
@@ -53,6 +59,7 @@ const Exam = () => {
         id: q.id,
         type: q.type,
         answer: "",
+        options: q.options,
       })),
     },
   });
