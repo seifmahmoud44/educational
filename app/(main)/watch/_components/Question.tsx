@@ -1,9 +1,13 @@
+import { UseFormRegister } from "react-hook-form";
+type FormData = {
+  [key: string]: string | boolean | number; // Adjust according to your form fields
+};
 type QuestionProps = {
   id: string;
   type: "mcq" | "text";
   question: string;
   options?: string[];
-  register: any;
+  register: UseFormRegister<FormData>;
   fieldName: string;
   error?: string;
   selectedAnswer?: string; // Add selectedAnswer prop
