@@ -1,6 +1,6 @@
 export default function Video() {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <iframe
         width="100%"
         height="508"

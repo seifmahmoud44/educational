@@ -20,7 +20,7 @@ export default function Lessons() {
   const [openItems, setOpenItems] = useState<string[]>(["item-1"]);
 
   return (
-    <div className="w-[400px] bg-white main-box-shadow p-6 rounded-md space-y-3 max-md:w-full max-md:order-1">
+    <div className="sticky top-4 min-w-[400px] h-fit bg-white main-box-shadow p-6 rounded-md space-y-3 max-md:min-w-full max-md:order-1">
       {/* Progress Section */}
       <div className="space-y-2">
         <p className="font-medium">Progress</p>
@@ -28,7 +28,7 @@ export default function Lessons() {
       </div>
 
       {/* Accordion Section */}
-      <div className="">
+      <div className="w-full">
         <Accordion
           type="multiple"
           value={openItems}
@@ -36,6 +36,7 @@ export default function Lessons() {
           className="w-full space-y-6"
         >
           {/* map your lessons here with change icons like completed or uncompleted and assigment icon */}
+          {/* map first item */}
           <AccordionItem value="item-1" className="p-4 main-box-shadow">
             <AccordionTrigger>
               <p className="flex items-center gap-4">
@@ -47,19 +48,7 @@ export default function Lessons() {
                 <CompletedLesson size="sm" />
                 <div className="flex justify-start items-center flex-grow gap-4">
                   <CameraIcon />
-                  <p className="text-base line-clamp-2 w-36">
-                    This is the first lesson content.
-                  </p>
-                </div>
-                <p className="text-lg text-gray-400">09:10</p>
-              </div>
-            </AccordionContent>
-            <AccordionContent className="p-4 m-1 main-box-shadow rounded-md hover:bg-slate-100 cursor-pointer transition-all">
-              <div className="flex items-center justify-between gap-3">
-                <CompletedLesson size="sm" />
-                <div className="flex justify-start items-center flex-grow gap-4">
-                  <CameraIcon />
-                  <p className="text-base line-clamp-2 w-36">
+                  <p className="text-base line-clamp-2 w-36 max-md:w-28">
                     This is the first lesson content.
                   </p>
                 </div>
