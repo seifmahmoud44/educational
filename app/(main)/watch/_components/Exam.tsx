@@ -120,9 +120,10 @@ const Exam = () => {
 
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+        className="px-4 py-2 bg-[#0248AB]
+        font-semibold w-52 text-center mx-auto text-white rounded-lg text-sm block"
       >
-        Submit
+        Confirm
       </button>
     </form>
   );
