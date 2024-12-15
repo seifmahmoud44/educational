@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../_components/Navbar";
 
 export default function layout({
   children,
@@ -6,8 +7,8 @@ export default function layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      <h1>navbar</h1>
+    <div className="space-y-5">
+      <Navbar />
       {children}
       <h1>footer</h1>
     </div>
